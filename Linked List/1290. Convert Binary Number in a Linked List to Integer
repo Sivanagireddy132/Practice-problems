@@ -1,0 +1,48 @@
+Given head which is a reference node to a singly-linked list. The value of each node in the linked list is either 0 or 1. The linked list holds the binary representation of a number.
+
+Return the decimal value of the number in the linked list.
+
+The most significant bit is at the head of the linked list.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,0,1]
+Output: 5
+Explanation: (101) in base 2 = (5) in base 10
+Example 2:
+
+Input: head = [0]
+Output: 0
+
+CODE: 
+
+class Solution {
+    public static int decimal(int[] arr){
+        int n=arr.length;
+        double sum=0;
+        for(int i=0;i<n;i++){
+            sum=sum+Math.pow(2,i)*arr[n-i-1];
+        }return (int)sum;
+    }
+    public int getDecimalValue(ListNode head) {
+        ListNode temp=head;
+        ListNode curr=head;
+        int n=0;
+        while(temp!=null){
+            
+            temp=temp.next;
+            n=n+1;
+        }int[] arr= new int[n];
+        int i=0;
+        while(curr!=null){
+            arr[i]=curr.val;
+            curr=curr.next;
+            i=i+1;
+        }
+        int sum=decimal(arr);
+        return sum;
+    }
+}
